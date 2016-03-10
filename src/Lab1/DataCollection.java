@@ -64,4 +64,11 @@ public class DataCollection {
 	public String toString(){
 		return "data: " + data + "title: " + title + "xUnit: " + xUnit + "yUnit: " + yUnit;
 	}
+	
+	@Override
+	public boolean equals(Object o){
+		DataCollection other = ((DataCollection)o);
+		return (getTitle().equals(other.getTitle()) && xUnit.equals(other.getXUnit()) 
+				&& yUnit.equals(other.getYUnit()) && data.equals(other.getData()));
+	}
 }
