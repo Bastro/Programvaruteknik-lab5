@@ -40,14 +40,21 @@ public class JsonToHtml extends HttpServlet {
 		footballGoals.getData();
 		temperature.getData();
 		dataCollectionBuilder = new DataCollectionBuilder(footballGoals, temperature, Resolution.DAY);
+		System.out.println(dataCollectionBuilder);
 		String jsonString = new Genson().serialize(dataCollectionBuilder.getResult());
+		System.out.println(jsonString);
+		
+		JsonFormatter jsonFormatter = new JsonFormatter();
 		
         response.setContentType("application/json;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String pretty = request.getParameter("pretty");
+           Boolean pretty = Boolean.valueOf(request.getParameter("pretty"));
+           out.println(pretty);
             
-            out.println("Ok");
-           // System.out.println(jsonString);
+            if (pretty)
+            	out.println(jsonFormatter.format(jsonString));
+            else
+            	out.println(jsonString);
         }
     }
 

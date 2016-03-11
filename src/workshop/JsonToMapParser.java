@@ -1,7 +1,8 @@
 package workshop;
 
-import com.owlike.genson.Genson;
 import java.util.Map;
+
+import com.owlike.genson.Genson;
 
 /**
  *
@@ -15,6 +16,7 @@ public class JsonToMapParser {
 		this.json = json;
 	}
 
+	@SuppressWarnings("unchecked")
 	public Map<String, Object> getResult() {
 		return new Genson().deserialize(json, Map.class);
 	}
