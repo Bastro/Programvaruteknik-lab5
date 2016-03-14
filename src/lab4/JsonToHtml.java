@@ -2,7 +2,6 @@ package lab4;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,15 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.owlike.genson.Genson;
-
-import Lab1.DataCollection;
-import Lab1.DataCollectionBuilder;
-import Lab1.DataSource;
-import Lab1.MatchedDataPair;
-import Lab1.Resolution;
-import workshop.FootballGoalsSource;
-import workshop.TemperatureSource;
 
 /**
  * Servlet implementation class JsonToHtml
@@ -27,29 +17,20 @@ import workshop.TemperatureSource;
 public class JsonToHtml extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private DataSource footballGoals;
-	private DataSource temperature;
-	private DataCollectionBuilder dataCollectionBuilder;
-	private DataCollection datacollection;
-	private Map<String, MatchedDataPair> map;
-
-	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		
-		footballGoals = new FootballGoalsSource("Strömvallen");
-		temperature = new TemperatureSource();
-		footballGoals.getData();
-		temperature.getData();
-		dataCollectionBuilder = new DataCollectionBuilder(footballGoals, temperature, Resolution.DAY);
-		System.out.println(dataCollectionBuilder);
-		String jsonString = new Genson().serialize(dataCollectionBuilder.getResult());
-		System.out.println(jsonString);
-		
+	/**
+	 * Request from /JsonToHtml
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
+	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {	
 		JsonFormatter jsonFormatter = new JsonFormatter();
+		JsonToHtmlController controller = new JsonToHtmlController();
+		String jsonString = controller.getJsonString();
 		
         response.setContentType("application/json;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
            Boolean pretty = Boolean.valueOf(request.getParameter("pretty"));
-           out.println(pretty);
             
             if (pretty)
             	out.println(jsonFormatter.format(jsonString));
@@ -72,7 +53,7 @@ public class JsonToHtml extends HttpServlet {
 
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "Json string.";
     }
 
 }
