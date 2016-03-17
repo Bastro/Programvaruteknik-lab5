@@ -1,4 +1,4 @@
-package workshop;
+package datasources;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import Lab1.DataSource;
+import workshop.JsonToMapParser;
+import workshop.UrlFetcher;
 
 /**
  *

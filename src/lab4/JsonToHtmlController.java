@@ -5,8 +5,8 @@ import com.owlike.genson.Genson;
 import Lab1.DataCollectionBuilder;
 import Lab1.DataSource;
 import Lab1.Resolution;
-import workshop.FootballGoalsSource;
-import workshop.TemperatureSource;
+import datasources.FootballGoalsSource;
+import datasources.TemperatureSource;
 
 /**
  * Controller of data to JsonToHtml class

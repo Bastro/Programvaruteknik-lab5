@@ -1,9 +1,11 @@
-package workshop;
+package datasources;
 
 import java.time.LocalDate;
 import java.util.Map;
 
 import Lab1.DataSource;
+import workshop.CsvToMapParser;
+import workshop.UrlFetcher;
 
 /**
  * @author ofk14den

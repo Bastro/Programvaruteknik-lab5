@@ -8,6 +8,8 @@ import Lab1.DataCollection;
 import Lab1.DataCollectionBuilder;
 import Lab1.ImplDataSource;
 import Lab1.Resolution;
+import datasources.FootballGoalsSource;
+import datasources.TemperatureSource;
 
 /**
  * @author ofk14den
