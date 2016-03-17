@@ -25,12 +25,15 @@ public class JsonToHtml extends HttpServlet {
 	 */
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {	
 		JsonFormatter jsonFormatter = new JsonFormatter();
-		JsonToHtmlController controller = new JsonToHtmlController();
-		String jsonString = controller.getJsonString();
 		
         response.setContentType("application/json;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
            Boolean pretty = Boolean.valueOf(request.getParameter("pretty"));
+           //String dataSource1 = request.getParameter("dataSource1").toString();
+           //String dataSource2 = request.getParameter("dataSource2").toString();
+           
+           JsonToHtmlController controller = new JsonToHtmlController();
+           String jsonString = controller.getJsonString("dataSource1", "dataSource2");
             
             if (pretty)
             	out.println(jsonFormatter.format(jsonString));
