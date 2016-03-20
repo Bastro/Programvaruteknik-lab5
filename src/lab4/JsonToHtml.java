@@ -29,11 +29,11 @@ public class JsonToHtml extends HttpServlet {
         response.setContentType("application/json;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
            Boolean pretty = Boolean.valueOf(request.getParameter("pretty"));
-           //String dataSource1 = request.getParameter("dataSource1").toString();
-           //String dataSource2 = request.getParameter("dataSource2").toString();
+           String dataSource1 = request.getParameter("datasource1");
+           String dataSource2 = request.getParameter("datasource2");
            
            JsonToHtmlController controller = new JsonToHtmlController();
-           String jsonString = controller.getJsonString("dataSource1", "dataSource2");
+           String jsonString = controller.getJsonString(dataSource1, dataSource2);
             
             if (pretty)
             	out.println(jsonFormatter.format(jsonString));

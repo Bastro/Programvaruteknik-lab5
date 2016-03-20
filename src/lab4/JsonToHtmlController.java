@@ -7,7 +7,6 @@ import Lab1.DataSource;
 import Lab1.Resolution;
 import datasources.DataSourceFactory;
 import datasources.FootballGoalsSource;
-import datasources.TemperatureSource;
 
 /**
  * Controller of data to JsonToHtml class
@@ -21,15 +20,11 @@ public class JsonToHtmlController {
 	 */
 	public String getJsonString(String dataSource1, String dataSource2) {
 		DataSourceFactory factory = new DataSourceFactory();
-		DataSource dataSourceOne = factory.getDataSource("icecreamsales");
-		DataSource dataSourceTwo = factory.getDataSource("temperature");
-		
-		System.out.println(dataSourceOne.getData());
-		System.out.println(dataSourceTwo.getData());
-		
+		DataSource dataSourceOne = factory.getDataSource(dataSource1);
+		DataSource dataSourceTwo = factory.getDataSource(dataSource2);
+
 		dataCollectionBuilder = new DataCollectionBuilder(dataSourceOne, dataSourceTwo, Resolution.DAY);
-		
-		String jsonString = new Genson().serialize(dataCollectionBuilder.getResult());
+		String jsonString = new Genson().serialize(dataCollectionBuilder.getResult().getData());
 		
 		return jsonString;
 	}	

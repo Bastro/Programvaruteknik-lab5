@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
+
 import Lab1.DataSource;
 import workshop.JsonToMapParser;
 import workshop.UrlFetcher;
@@ -62,11 +64,11 @@ public class FootballGoalsSource implements DataSource {
 		return result;
 	}
 
-    private void addGoalsToDate(Map<LocalDate, Double> result, LocalDate date, int goals) {
-        if (!result.containsKey(date)) {
-            result.put(date, new Double(goals));
-        } else {
-            result.put(date, result.get(date) + goals);
-        }
-    }
+	private void addGoalsToDate(Map<LocalDate, Double> result, LocalDate date, int goals) {
+		if (!result.containsKey(date)) {
+			result.put(date, new Double(goals));
+		} else {
+			result.put(date, result.get(date) + goals);
+		}
+	}
 }
